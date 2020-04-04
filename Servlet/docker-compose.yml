@@ -1,0 +1,26 @@
+version: "3.6"
+
+services:
+
+  mongodb:
+    image: mongo:4
+    restart: always
+    container_name: mongodb
+    hostname: mongo
+    ports:
+    - 27018:27017
+    volumes: 
+    - /database:/var/lib/mongodb
+    
+  tomcatserver:
+    build: .
+    restart: always
+    container_name: appservlet
+    ports:
+    - 8090:8080
+    links:
+    - mongodb:mongo
+    
+  
+
+  
